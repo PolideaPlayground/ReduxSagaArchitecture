@@ -124,6 +124,8 @@ export default class SlideIn extends React.PureComponent<Props, State> {
 
 const styles = StyleSheet.create({
   animatedView: {
-    position: 'absolute'
+    position: 'absolute',
+    width: '100%',
+    height: '100%'
   }
 })

@@ -1,24 +1,17 @@
 // @flow
 
 import * as React from 'react'
-import { View, TouchableOpacity, Text, SafeAreaView, StyleSheet } from 'react-native'
+import { View, SafeAreaView, StyleSheet } from 'react-native'
 import SlideIn from './navigators/SlideIn'
-import ToDoList from './examples/todo/ToDoList'
+import ToDo from './examples/todo/ToDo'
 import Saga from './examples/saga/Saga'
+import Button from './common/Button'
 
 type State = {
   example: Example
 }
 
 type Example = 'todo' | 'saga'
-
-function ExampleButton({ onPress, title }: { onPress: () => void, title: string }) {
-  return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.buttonText}>{title}</Text>
-    </TouchableOpacity>
-  )
-}
 
 export default class App extends React.PureComponent<void, State> {
   state = { example: 'todo' }
@@ -27,7 +20,7 @@ export default class App extends React.PureComponent<void, State> {
     const example = this.state.example
     switch (example) {
       case 'todo':
-        return <ToDoList key={example} />
+        return <ToDo key={example} />
       case 'saga':
         return <Saga key={example} />
     }
@@ -39,14 +32,14 @@ export default class App extends React.PureComponent<void, State> {
       <SafeAreaView style={styles.safeArea}>
         <SlideIn style={styles.content}>{this.renderContent()}</SlideIn>
         <View style={styles.buttonGroup}>
-          <ExampleButton
-            title={'TODO List'}
+          <Button
+            title={'Notes'}
             onPress={() => {
               this.setState({ example: 'todo' })
             }}
           />
-          <ExampleButton
-            title={'Simple Saga'}
+          <Button
+            title={'Saga'}
             onPress={() => {
               this.setState({ example: 'saga' })
             }}
@@ -58,18 +51,12 @@ export default class App extends React.PureComponent<void, State> {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, margin: 30 },
-  content: { flex: 1 },
-  buttonGroup: { flexDirection: 'row', justifyContent: 'space-evenly' },
-  button: {
-    borderColor: '#1790c7',
-    borderWidth: 1,
-    borderRadius: 15,
-    backgroundColor: '#27a0d7',
-    padding: 10
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold'
+  safeArea: { flex: 1 },
+  content: { flex: 1, margin: 5 },
+  buttonGroup: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    backgroundColor: '#dddddd',
+    padding: 5
   }
 })
