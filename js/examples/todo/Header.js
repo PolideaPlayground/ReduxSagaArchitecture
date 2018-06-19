@@ -19,7 +19,7 @@ type State = {
 class Header extends React.Component<Props, State> {
   state = { text: '' }
 
-  _onChangeText = text => {
+  _onChangeText = (text: string) => {
     this.setState({ text })
   }
 

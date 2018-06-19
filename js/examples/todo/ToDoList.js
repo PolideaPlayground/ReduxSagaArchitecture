@@ -48,12 +48,6 @@ function ToDoList({ tasks, markTask, removeTask }: ToDoListArgs) {
   )
 }
 
-function mapStateToProps(state: State): $Shape<ToDoListArgs> {
-  return {
-    tasks: state.tasks
-  }
-}
-
 const styles = StyleSheet.create({
   list: { flex: 1 },
   row: { flex: 1, flexDirection: 'row', backgroundColor: '#eeeeee', marginTop: 10, padding: 10 },
@@ -63,6 +57,6 @@ const styles = StyleSheet.create({
 })
 
 export default connect(
-  mapStateToProps,
+  (state: State) => ({ tasks: state.tasks }),
   { markTask, removeTask }
 )(ToDoList)
